@@ -40,7 +40,7 @@ function switchTheme() {
 }
 
 const isiOS = /iPhone|iPad|iPod/.test(window.navigator?.userAgentData?.platform || window.navigator.platform)
-const isDemo = import.meta.env.VITE_DEMO
+const isDemo = import.meta.env.VITE_DEMO == "true"
 </script>
 
 <template>
@@ -63,7 +63,7 @@ const isDemo = import.meta.env.VITE_DEMO
 				<MenuLink link="/profile" icon="user-edit">{{ txt('Profile') }}</MenuLink>
 			</div>
 			<div v-if="installPrompt || isDemo" class="sidemenu-group divided">
-				<MenuLink isButton icon="download" @click.prevent="installApp">{{ txt('Download app') }}</MenuLink>
+				<MenuLink v-if="installPrompt" isButton icon="download" @click.prevent="installApp">{{ txt('Download app') }}</MenuLink>
 				<MenuLink v-if="isDemo" link="https://github.com/pa2lo/docfiller" icon="github" external>GitHub</MenuLink>
 			</div>
 			<div class="sidemenu-footer divided flex ai-c">
